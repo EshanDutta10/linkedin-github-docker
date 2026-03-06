@@ -1,10 +1,11 @@
-FROM ubuntu:latest 
+FROM ubuntu:latest
+FROM python:3.10-slim
 
 #install dependencies
-RUN apt-get update && apt-get install -y \
-    python3.10 \ 
-    python3-pip \
-    git 
+RUN apt-get update && apt-get install -y python3-venv
+RUN python3 -m venv /venv
+ENV PATH="/venv/bin:$PATH"
+RUN pip install --upgrade pip
 
 RUN python3 -m venv /venv
 ENV PATH="/venv/bin:$PATH"
